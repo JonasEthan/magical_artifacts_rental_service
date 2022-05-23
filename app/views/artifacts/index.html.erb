@@ -1,27 +1,27 @@
-
 <%# <%= render 'artifact_list', artifacts: @artifacts %>
 
 <div class="container">
-  <h1>Our Selection of Artifacts</h1>
+  <h1>Discover all artifacts (<%= @artifacts.count %>)</h1>
+  <%= link_to "Create new artifact", new_artifact_path, class: "btn btn-flat" %>
 
-  <div>
-    <ul>
-    <% @artifacts.each do |artifact| %>
-      <li>
-        <%= link_to artifact_path(artifact) do %>
-          <%# <div class=...> %>
-            <h3><%= artifact.name %></h3>
-          <%# </div> %>
-        <% end %>
-      </li>
-      <ul>
-        <li><%= artifact.category %></li>
-        <li><%= artifact.description %></li>
-        <li><%= artifact.price %> Gold Coins</li>
-      </ul>
-      <br>
-    <% end %>
-    </ul>
+  <div class="row mt-25">
+    <div class="col-sm-12 col-md-6 col-lg-3">
+      <% @artifacts.each do |artifact| %>
+        <div class="card">
+          <%= link_to artifact_path(artifact) do %>
+            <img class="card-img-top" src="https://starwalk.space/gallery/images/mars-the-ultimate-guide/1920x1080.jpg" alt="Card image cap">
+          <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= artifact.name %></h5>
+          <p class="card-text"><%= artifact.description %></p>
+          <p class="card-text"><%= artifact.category %></p>
+          <p class="card-text"><strong><%= artifact.price %></strong> Gold Coins / day</p>
+          <a href="#" class="btn btn-flat">Book now!</a>
+        </div>
+    </div>
+      <% end %>
   </div>
-  <%= link_to "Create a Artifact", new_artifact_path %>
+
+
+  <%= link_to "Go back", root_path, class: "btn btn-ghost" %>
 </div>
