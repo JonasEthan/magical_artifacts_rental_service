@@ -20,10 +20,9 @@
     <div class="form-actions btn btn-flat">
       <%= f.button :submit, "Log in" %>
     </div>
-  <%= link_to "I forgot my password", new_user_password_path %>
+    <%= link_to "Forgot your password?", new_user_password_path %>
   <% end %>
 
   <br>
-  <br>
-  <p>No account yet?</p><%= link_to "Sign up", new_user_session_path, class: "btn btn-ghost"  %>
+  <p>No account yet?</p><%= link_to "Sign up", new_user_registration_path, class: "btn btn-ghost"  %>
 </div>
