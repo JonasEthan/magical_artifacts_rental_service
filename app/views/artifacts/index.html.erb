@@ -1,0 +1,27 @@
+
+<%# <%= render 'artifact_list', artifacts: @artifacts %>
+
+<div class="container">
+  <h1>Our Selection of Artifacts</h1>
+
+  <div>
+    <ul>
+    <% @artifacts.each do |artifact| %>
+      <li>
+        <%= link_to artifact_path(artifact) do %>
+          <%# <div class=...> %>
+            <h3><%= artifact.name %></h3>
+          <%# </div> %>
+        <% end %>
+      </li>
+      <ul>
+        <li><%= artifact.category %></li>
+        <li><%= artifact.description %></li>
+        <li><%= artifact.price %> Gold Coins</li>
+      </ul>
+      <br>
+    <% end %>
+    </ul>
+  </div>
+
+</div>
