@@ -18,7 +18,7 @@ class ArtifactsController < ApplicationController
     if @artifact.save
       redirect_to artifact_path(@artifact)
     else
-      render "artifact/new"
+      render :new
     end
   end
 
