@@ -1,0 +1,8 @@
+<h1>Create your own artifact</h1>
+<%= simple_form_for(@artifact) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :category %>
+  <%= f.input :price %>
+  <%= f.submit %>
+<% end %>
