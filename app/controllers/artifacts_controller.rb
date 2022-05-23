@@ -1,5 +1,5 @@
 class ArtifactsController < ApplicationController
-  
+
   def index
     @artifacts = Artifact.all
   end
@@ -14,6 +14,7 @@ class ArtifactsController < ApplicationController
 
   def create
     @artifact = Artifact.new(artifact_params)
+    @artifact.user_id = current_user.id
     if @artifact.save
       redirect_to artifact_path(@artifact)
     else
@@ -24,6 +25,6 @@ class ArtifactsController < ApplicationController
   private
 
   def artifact_params
-    params.require(:artifact).permit(:user_id, :price, :description, :category, :name)
+    params.require(:artifact).permit(:price, :description, :category, :name)
   end
 end
