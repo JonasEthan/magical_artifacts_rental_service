@@ -22,13 +22,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link btn btn-ghost" href="#">Sign up</a>
+          <%# <%= link_to "Sign up", new_user_registration_path, "nav-link" %>
+            <a class="nav-link btn btn-ghost" href="/users/sign_up">Sign up</a>
           </li>
+          <% if !user_signed_in? %>
             <li class="nav-item">
-            <a class="nav-link" href="#">Log in</a>
+            <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
+            <% end %>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home</a>
+            <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <% if user_signed_in? %>
             <li class="nav-item dropdown">
