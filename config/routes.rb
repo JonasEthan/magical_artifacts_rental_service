@@ -5,5 +5,4 @@ Rails.application.routes.draw do
   resources :artifacts do
     resources :bookings, only: [:new, :create]
   end
-  # Defines the root path route ("/")
 end
