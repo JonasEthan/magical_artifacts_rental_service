@@ -5,7 +5,7 @@
     <%= f.input :name %>
     <%= f.input :small_description %>
     <%= f.input :description %>
-    <%= f.input :category %>
+    <%= f.input :category, collection: Artifact::CATEGORIES%>
     <%= f.input :price %>
     <%= f.submit "Submit", class: "btn btn-flat"%>
   <% end %>
