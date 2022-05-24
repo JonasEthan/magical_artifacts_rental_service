@@ -1,6 +1,6 @@
 <div class="container">
   <h1><%=  @artifact.name %></h1>
-  <h3><%=  @artifact.small_description %></h3>
+  <h3><%=  @artifact.description %></h3>
   <p><strong><%=  @artifact.price %> </strong><i class="fa-solid fa-coins gold-coin"></i> / day</p>
   <% if current_user == @artifact.user %>
     <%= link_to "Edit", edit_artifact_path(@artifact) %> |
