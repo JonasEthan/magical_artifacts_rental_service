@@ -6,6 +6,10 @@
     <%= link_to "Edit", edit_artifact_path(@artifact) %> |
     <%= link_to "Remove", artifact_path(@artifact), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %> |
   <% end %>
+  <%= simple_form_for [@artifact, @booking], data: { turbo: false } do |f| %>
+    <%= f.input :days %>
+    <%= f.submit "Book now!", class: 'btn btn-flat'  %>
+  <% end %>
 
   <div class="text-center">
     <%= link_to "Go back", artifacts_path, class: "btn btn-ghost" %>
