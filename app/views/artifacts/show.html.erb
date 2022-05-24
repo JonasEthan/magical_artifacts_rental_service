@@ -1,7 +1,12 @@
-<h1><%=  @artifact.name %></h1>
-<h3><%=  @artifact.description %></h3>
-<p><%=  @artifact.price %> Gold Coins per day</p>
-<% if current_user == @artifact.user %>
-  <%= link_to "Edit", edit_artifact_path(@artifact) %> |
-<% end %>
-<%= link_to "Back", artifacts_path %>
+<div class="container">
+  <h1><%=  @artifact.name %></h1>
+  <h3><%=  @artifact.description %></h3>
+  <p><%=  @artifact.price %> Gold Coins per day</p>
+  <% if current_user == @artifact.user %>
+    <%= link_to "Edit", edit_artifact_path(@artifact) %> |
+  <% end %>
+
+  <div class="text-center">
+    <%= link_to "Go back", artifacts_path, class: "btn btn-ghost" %>
+  </div>
+</div>
