@@ -11,8 +11,13 @@ class BookingsController < ApplicationController
                           #  days: params[:days])
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id
-    @booking.save
-    redirect_to artifact_path(@artifact)
+    @booking.artifact_id = params[:artifact_id]
+    authorize @booking
+    if @booking.save
+      redirect_to artifact_path(@artifact)
+    else
+      redirect_to artifacts_path
+    end
   end
 
   # if @booking.save
