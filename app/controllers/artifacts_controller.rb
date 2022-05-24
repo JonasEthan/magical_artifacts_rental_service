@@ -1,5 +1,4 @@
 class ArtifactsController < ApplicationController
-
   def index
     @artifacts = policy_scope(Artifact)
   end
@@ -22,6 +21,21 @@ class ArtifactsController < ApplicationController
       redirect_to artifact_path(@artifact)
     else
       render :new
+    end
+  end
+
+  def edit
+    @artifact = Artifact.find(params[:id])
+    authorize @artifact
+  end
+
+  def update
+    @artifact = Artifact.find(params[:id])
+    authorize @artifact
+    if @artifact.update(artifact_params)
+      redirect_to artifact_path(@artifact)
+    else
+      render :edit
     end
   end
 
