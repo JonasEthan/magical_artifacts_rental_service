@@ -1,9 +1,16 @@
 <%# <%= render 'artifact_list', artifacts: @artifacts %>
 
-<div class="container">
+<div class="container flex">
   <h1>Discover all artifacts (<%= @artifacts.count %>)</h1>
-  <%= link_to "Add your artifact", new_artifact_path, class: "btn btn-flat" %>
 
+  <% if user_signed_in? %>
+  <%= link_to "Add your artifact", new_artifact_path, class: "btn btn-flat" %>
+  <br>
+  <br>
+  <% end %>
+</div>
+
+<div class="container">
   <div class="row mt-25">
     <% @artifacts.each do |artifact| %>
     <div class="col-sm-12 col-md-6 col-lg-3">
