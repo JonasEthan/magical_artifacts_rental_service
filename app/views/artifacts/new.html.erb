@@ -1,12 +1,15 @@
 <div class="container">
 
-<h1>Create your own artifact</h1>
-<%= simple_form_for(@artifact) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :category %>
-  <%= f.input :price %>
-  <%= f.submit %>
-<% end %>
+  <h1>Create your own artifact</h1>
+  <%= simple_form_for(@artifact) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :category %>
+    <%= f.input :price %>
+    <%= f.submit "Submit", class: "btn btn-flat"%>
+  <% end %>
 
+  <div class="text-center">
+    <%= link_to "Go back", artifacts_path, class: "btn btn-ghost" %>
+  </div>
 </div>
