@@ -3,3 +3,12 @@
 <p><%=  @artifact.price %> Gold Coins per day</p>
 <%= link_to "Edit", edit_artifact_path(@artifact) %>
 <%= link_to "Back", artifacts_path %>
+<br><br>
+
+<%= simple_form_for [@artifact, @booking], data: { turbo: false } do |f| %>
+  <%= f.input :days %>
+  <%= f.submit "Book now!", class: 'btn btn-flat'  %>
+<% end %>
+<%# Wie wird hier die create method ausgelöst??? %>
+
+<%= link_to "Create new artifact", new_artifact_path, class: "btn btn-flat" %>

@@ -5,6 +5,7 @@ class ArtifactsController < ApplicationController
 
   def show
     @artifact = Artifact.find(params[:id])
+    @booking = Booking.new
     authorize @artifact
   end
 
