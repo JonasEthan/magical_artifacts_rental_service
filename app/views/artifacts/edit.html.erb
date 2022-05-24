@@ -1,6 +1,7 @@
 <h1><%= @artifact.name %></h1>
 <%= simple_form_for(@artifact) do |f| %>
   <%= f.input :name%>
+  <%= f.input :small_description %>
   <%= f.input :description %>
   <%= f.input :price %>
   <%= f.submit %>
