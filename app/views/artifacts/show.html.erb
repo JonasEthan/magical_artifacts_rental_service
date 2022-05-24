@@ -1,14 +1,44 @@
 <div class="container">
   <h1><%=  @artifact.name %></h1>
-  <h3><%=  @artifact.description %></h3>
-  <p><strong><%=  @artifact.price %> </strong><i class="fa-solid fa-coins gold-coin"></i> / day</p>
+  <h3><%=  @artifact.small_description %></h3>
+
+  <div class="text-center mb-5">
+    <img src="https://assets.cdn.moviepilot.de/files/26516b0ea0f02c3c1afc8109722e605346e221e48055c5a4f04ae71ca688/fill/992/477/Harry%20Potter%20-%20Collection%20Box.jpg" alt="artifact photo", class="large-image w-80">
+  </div>
+
+  <div class="row">
+    <div class="artifact-info col-sm-7 col-md-7 col-lg-9">
+      <div class="border-bottom">
+        <h3><%=  @artifact.description %></h3>
+      </div>
+      <div class="border-bottom">
+        <div class="artifact-info-detail mt-3">
+          <% if @artifact.user.user_name %>
+            <p><i class="fa-solid fa-wand-sparkles"></i> Owned by: <strong><%= @artifact.user.user_name%></strong></p>
+          <% end %>
+          <p><i class="fa-solid fa-hourglass"></i>   Added <%= Date.today.day - @artifact.created_at.day %> days ago</p>
+        </div>
+        <% if current_user == @artifact.user %>
+          <%= link_to "Edit", edit_artifact_path(@artifact) %> |
+          <%= link_to "Remove", artifact_path(@artifact), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %> |
+        <% end %>
+      </div>
+    </div>
+
+    <div class="booking-form col-sm-5 col-md-5 col-lg-3">
+      <p><span class="large-p"><strong><%= @artifact.price %> </strong><i class="fa-solid fa-coins gold-coin"></span></i> / day</p>
+      <%= simple_form_for [@artifact, @booking], data: { turbo: false } do |f| %>
+        <%# <%= f.input :days %>
+        <%= f.input :start_date, as: :date, html5: true %>
+        <%= f.input :end_date, as: :date, html5: true %>
+        <%= f.submit "Reserve", class: 'btn btn-gradient' %>
+      <% end %>
+    </div>
+  </div>
+
   <% if current_user == @artifact.user %>
     <%= link_to "Edit", edit_artifact_path(@artifact) %> |
     <%= link_to "Remove", artifact_path(@artifact), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %> |
-  <% end %>
-  <%= simple_form_for [@artifact, @booking], data: { turbo: false } do |f| %>
-    <%= f.input :days %>
-    <%= f.submit "Book now!", class: 'btn btn-flat'  %>
   <% end %>
 
   <div class="text-center">
