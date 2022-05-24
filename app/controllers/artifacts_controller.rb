@@ -21,7 +21,7 @@ class ArtifactsController < ApplicationController
     if @artifact.save
       redirect_to artifact_path(@artifact)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -40,7 +40,9 @@ class ArtifactsController < ApplicationController
     end
   end
 
-  def destroy # run yarn build --watch at least once
+  # run yarn build --watch at least once
+
+  def destroy
     @artifact = Artifact.find(params[:id])
     authorize @artifact
     @artifact.delete
@@ -50,6 +52,6 @@ class ArtifactsController < ApplicationController
   private
 
   def artifact_params
-    params.require(:artifact).permit(:price, :description, :category, :name)
+    params.require(:artifact).permit(:price, :small_description, :description, :category, :name)
   end
 end
