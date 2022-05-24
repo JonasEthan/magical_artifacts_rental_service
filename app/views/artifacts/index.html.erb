@@ -14,18 +14,18 @@
   <div class="row mt-25">
     <% @artifacts.each do |artifact| %>
     <div class="col-sm-12 col-md-6 col-lg-3">
-      <div class="card mb-3">
-        <%= link_to artifact_path(artifact) do %>
+      <%= link_to artifact_path(artifact) do %>
+        <div class="card mb-3">
           <img class="card-img-top" src="https://starwalk.space/gallery/images/mars-the-ultimate-guide/1920x1080.jpg" alt="Card image cap">
-        <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= artifact.name %></h5>
-          <p class="card-text"><%= artifact.small_description %></p>
-          <p class="card-text"><%= artifact.category %></p>
-          <%# <p class="card-text">Owned by <%= artifact.username </p>%>
-          <p class="card-text"><strong><%= artifact.price %></strong> <i class="fa-solid fa-coins gold-coin"></i> / day</p>
+          <div class="card-body">
+            <h5 class="card-title"><%= artifact.name %></h5>
+            <p class="card-text"><%= artifact.small_description %></p>
+            <p class="card-text"><%= artifact.category %></p>
+            <%# <p class="card-text">Owned by <%= artifact.username </p>%>
+            <p class="card-text"><strong><%= artifact.price %></strong> <i class="fa-solid fa-coins gold-coin"></i> / day</p>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
     <% end %>
   </div>
