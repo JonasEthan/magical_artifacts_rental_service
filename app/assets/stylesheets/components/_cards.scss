@@ -1,0 +1,25 @@
+.card {
+  border-radius: 20px !important;
+  box-shadow: 0 0 5px rgb(192, 192, 192) !important;
+  transition: 0.5s;
+
+}
+
+.card:hover {
+  transition: 1s;
+  box-shadow: 0 0 5px grey !important;
+}
+
+.card-img-top {
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
+}
+
+ a {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:hover {
+    color: black;
+  }
