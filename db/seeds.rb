@@ -8,12 +8,12 @@
 
 require 'faker'
 
-Artifact.delete_all
-User.delete_all
+# Artifact.delete_all
+# User.delete_all
 
 CATEGORIES = [
   "Household", "Selfdefence(non-lethal)", "Selfdefence(lethal)", "Garden", "Construction", "Adventuring", "Cursed",
-  "Learning", "Comunication", "Traps", "Transportation", "Alchemie", "Music", "Other"
+  "Learning", "Communication", "Traps", "Transportation", "Alchemie", "Music", "Other"
 ]
 
 puts "Start seeding Users"
