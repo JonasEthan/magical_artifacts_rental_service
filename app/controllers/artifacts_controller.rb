@@ -40,6 +40,13 @@ class ArtifactsController < ApplicationController
     end
   end
 
+  def destroy # run yarn build --watch at least once
+    @artifact = Artifact.find(params[:id])
+    authorize @artifact
+    @artifact.delete
+    redirect_to artifacts_path, status: :see_other
+  end
+
   private
 
   def artifact_params

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_24_093402) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_24_123233) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_093402) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.string "img_url"
+    t.string "small_description"
     t.index ["user_id"], name: "index_artifacts_on_user_id"
   end
 
@@ -31,6 +33,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_093402) do
     t.integer "days"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start_date"
+    t.date "end_date"
     t.index ["artifact_id"], name: "index_bookings_on_artifact_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
