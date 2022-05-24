@@ -1,8 +1,10 @@
-<h1><%= @artifact.name %></h1>
-<%= simple_form_for(@artifact) do |f| %>
-  <%= f.input :name%>
-  <%= f.input :small_description %>
-  <%= f.input :description %>
-  <%= f.input :price %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <h1>Update your artifact</h1>
+  <%= simple_form_for(@artifact) do |f| %>
+    <%= f.input :name%>
+    <%= f.input :small_description %>
+    <%= f.input :description %>
+    <%= f.input :price %>
+    <%= f.submit "Update", class: "btn btn-flat" %>
+  <% end %>
+</div>
