@@ -5,6 +5,7 @@
     <%= f.input :small_description %>
     <%= f.input :description %>
     <%= f.input :price, label: "Price in Gold Coins"%>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.submit "Update", class: "btn btn-flat" %>
   <% end %>
 </div>
