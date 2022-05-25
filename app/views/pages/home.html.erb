@@ -1,7 +1,29 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://cdn.sanity.io/images/0vv8moc6/psychtimes/49c49973cd07a408f9dfc2831f26d91b22c9c4df-11270x5000.jpg/sand%20dune_Sasa%20Kadrijevic_AdobeStock_226272093.jpeg?w=1500&fit=max&auto=format);">
-  <div class="container">
-    <h1>Welcome to <strong>MARS</strong>!</h1>
-    <p>Join our community and find the most magical artifacts you have never imagined!</p>
-    <%= link_to "See our offer", artifacts_path, class: "btn btn-flat" %>
+  <div class="container text-center">
+    <div class="mb-5">
+      <h1>Welcome to <strong>MARS</strong>!</h1>
+      <p>Join our community and find the most magical artifacts you have never imagined!</p>
+    </div>
+    <div class="row mt-25 text-black">
+      <h3>Here are some items of our selection</h3>
+      <% 4.times do %>
+        <% @artifact = Artifact.all.sample %>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+          <%= link_to artifact_path(@artifact) do %>
+            <div class="card mb-3">
+              <img class="card-img-top" src="https://starwalk.space/gallery/images/mars-the-ultimate-guide/1920x1080.jpg" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title"><%= @artifact.name %></h5>
+                <p class="card-text"><%= @artifact.small_description %></p>
+                <p class="card-text"><%= @artifact.category %></p>
+                <%# <p class="card-text">Owned by <%= @artifact.username </p>%>
+                <p class="card-text"><strong><%= @artifact.price %></strong> <i class="fa-solid fa-coins gold-coin"></i> / day</p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <%= link_to "See our full offer", artifacts_path, class: "btn btn-flat" %>
   </div>
 </div>
