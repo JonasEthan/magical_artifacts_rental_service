@@ -1,6 +1,7 @@
 class Artifact < ApplicationRecord
   belongs_to :user
   has_many :bookings
+  has_many_attached :photos
 
   CATEGORIES = [
     "Household", "Selfdefence(non-lethal)", "Selfdefence(lethal)", "Garden", "Construction", "Adventuring", "Cursed",
