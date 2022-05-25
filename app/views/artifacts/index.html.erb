@@ -16,7 +16,14 @@
     <div class="col-sm-12 col-md-6 col-lg-3">
       <%= link_to artifact_path(artifact) do %>
         <div class="card mb-3">
-          <%= image_tag "card_mars.jpg", alt: "Card image cap", class: "card-img-top" %>
+          <% if artifact.photos.attached? %>
+            <% artifact.photos.each do |photo| %>
+              <%= cl_image_tag photo.key, alt: "artifact photo", class: "large-image w-80" %>
+              <% break %>
+            <% end %>
+          <% else %>
+            <%= cl_image_tag("42ubmyncr7k6tx6z3n98ebtlw8um", alt: "artifact photo", class: "large-image w-80") %>
+          <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= artifact.name %></h5>
             <p class="card-text"><%= artifact.small_description %></p>
@@ -34,3 +41,5 @@
     <%= link_to "Go back", root_path, class: "btn btn-ghost" %>
   </div>
 </div>
+
+<%# comment for github %>
