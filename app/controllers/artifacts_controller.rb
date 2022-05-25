@@ -52,6 +52,6 @@ class ArtifactsController < ApplicationController
   private
 
   def artifact_params
-    params.require(:artifact).permit(:price, :small_description, :description, :category, :name)
+    params.require(:artifact).permit(:price, :small_description, :description, :category, :name, photos: [])
   end
 end

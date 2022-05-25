@@ -3,7 +3,10 @@
   <h3><%=  @artifact.small_description %></h3>
 
   <div class="text-center mb-5">
-    <img src="https://assets.cdn.moviepilot.de/files/26516b0ea0f02c3c1afc8109722e605346e221e48055c5a4f04ae71ca688/fill/992/477/Harry%20Potter%20-%20Collection%20Box.jpg" alt="artifact photo", class="large-image w-80">
+    <%# <img src="https://assets.cdn.moviepilot.de/files/26516b0ea0f02c3c1afc8109722e605346e221e48055c5a4f04ae71ca688/fill/992/477/Harry%20Potter%20-%20Collection%20Box.jpg" alt="artifact photo", class="large-image w-80"> %>
+    <% @artifact.photos.each do |photo| %>
+    <%= cl_image_tag photo.key %>
+    <% end %>
   </div>
 
   <div class="row">
