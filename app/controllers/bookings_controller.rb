@@ -7,7 +7,6 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.start_date = params[:booking][:start_date]
     @booking.end_date = params[:booking][:end_date]
-    @booking.days = (@booking.end_date - @booking.start_date).to_i
     if @booking.save
       redirect_to artifact_path(@artifact)
     else
@@ -18,6 +17,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:days, :start_date, :end_date)
+    params.require(:booking).permit(:start_date, :end_date)
   end
 end
