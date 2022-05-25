@@ -5,16 +5,19 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.artifact = @artifact
     authorize @booking
+    @booking.start_date = params[:booking][:start_date]
+    @booking.end_date = params[:booking][:end_date]
+    @booking.days = (@booking.end_date - @booking.start_date).to_i
     if @booking.save
       redirect_to artifact_path(@artifact)
     else
-      redirect_to artifacts_path
+      render "artifacts/show", status: :unprocessable_entity
     end
   end
 
   private
 
   def booking_params
-    params.require(:booking).permit(:days)
+    params.require(:booking).permit(:days, :start_date, :end_date)
   end
 end

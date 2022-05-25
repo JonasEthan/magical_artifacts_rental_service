@@ -19,6 +19,16 @@
           <p><i class="fa-solid fa-hourglass"></i>   Added <%= Date.today.day - @artifact.created_at.day %> days ago</p>
         </div>
       </div>
+      <div class="booking-history mt-3">
+        <div class="border-bottom">
+          <h3>Booking history</h3>
+          <ul>
+            <% @artifact.bookings.each do |booking| %>
+            <li><%= booking %>(Added <%= Date.today.day - @artifact.created_at.day %> days ago)</li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
       <div class="artifact-edits mt-3 mb-3">
         <% if current_user == @artifact.user %>
           <%= link_to "Edit", edit_artifact_path(@artifact),  class: "btn btn-ghost"  %>
