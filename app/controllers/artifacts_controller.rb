@@ -36,7 +36,7 @@ class ArtifactsController < ApplicationController
     if @artifact.update(artifact_params)
       redirect_to artifact_path(@artifact)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
