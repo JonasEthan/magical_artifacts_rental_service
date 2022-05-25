@@ -40,7 +40,6 @@
     <div class="booking-form col-sm-5 col-md-5 col-lg-3">
       <p><span class="large-p"><strong><%= @artifact.price %> </strong><i class="fa-solid fa-coins gold-coin"></span></i> / day</p>
       <%= simple_form_for [@artifact, @booking], data: { turbo: false } do |f| %>
-        <%# <%= f.input :days %>
         <%= f.input :start_date, as: :date, html5: true %>
         <%= f.input :end_date, as: :date, html5: true %>
         <%= f.submit "Reserve", class: 'btn btn-gradient' %>
