@@ -10,17 +10,31 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-
+/*
 .opacities {
-  filter: opacity(0.25);
-  transition: 1s;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  margin: 0;
+  transform: translateY(-100px) !important;
+  opacity: 0;
+  transition: 0.5s;
 }
 
-.navbar .navbar-brand {
-  filter: opacity(1);
+.show {
+  opacity: 1;
+  transform: translateY(0) !important;
+}
+*/
+.opacities {
+  position: fixed;
+  width: 100%;
+  transform: translateY(-25px);
+  opacity: 0;
+  transition: 1s;
 }
 
 .opacities:hover {
-  filter:opacity(1);
-  transition: 1s;
+  opacity: 1;
+  transform: translateY(0);
 }
