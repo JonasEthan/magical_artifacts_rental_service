@@ -29,7 +29,7 @@
 </div>
 
 <div class="container mt-3">
-  <%= link_to artifacts_path do %>
+  <%= link_to request.referer.present? ? request.referer : artifacts_path do %>
     <i class="fa-solid fa-backward"></i> GO BACK
   <% end %>
   <h1 class="mt-3"><%=  @artifact.name %></h1>
