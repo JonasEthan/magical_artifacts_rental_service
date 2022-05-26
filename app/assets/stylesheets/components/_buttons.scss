@@ -6,6 +6,7 @@
   font-weight: lighter;
   opacity: 0.6;
   transition: opacity 0.3s ease;
+  text-transform: uppercase;
 }
 
 .btn-ghost:hover {
@@ -20,6 +21,7 @@
   font-weight: lighter;
   opacity: 0.6;
   transition: opacity 0.3s ease;
+  text-transform: uppercase;
 }
 
 .btn-navbar-ghost:hover {
@@ -33,7 +35,7 @@
   color: white;
   padding: 8px 24px;
   border-radius: 4px;
-  background:  rgba(255, 123, 0, 0.917);
+  background:  rgba(255, 123, 0, 1);
   transition: background 0.3s ease;
   text-decoration: none;
 }
@@ -41,20 +43,22 @@
 .btn-flat:hover {
   background: rgba(255, 123, 0, 0.77);
   color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
 .btn-gradient {
   color: white;
   padding: 8px 24px;
   border-radius: 4px;
-  background: linear-gradient(rgba(255, 123, 0, 0.917), rgba(255, 123, 0, 0.77));
+  background: linear-gradient(rgba(255, 123, 0, 1), rgba(255, 123, 0, 0.77));
   transition: background 0.3s ease;
-  border: 1px solid rgba(255, 123, 0, 0.917);
+  border: 1px solid rgba(255, 123, 0, 1);
 }
 
 .btn-gradient:hover {
   background: linear-gradient(rgba(255, 123, 0, 0.77), #c25e07);
   color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
 
