@@ -24,7 +24,7 @@
     </button>
   </div>
     <% else %>
-      <%= image_tag "fallback_image.jpg", alt: "artifact photo", class: "w-100" %>
+      <%= image_tag "fallback_image.jpg", alt: "artifact photo", class: "d-block w-100 carousel-img" %>
     <% end %>
 </div>
 
@@ -48,13 +48,19 @@
           <p><i class="fa-solid fa-hourglass"></i>   Added <%= Date.today.day - @artifact.created_at.day %> days ago</p>
         </div>
       </div>
-      <div class="booking-history mt-5">
+      <div class="booking-history mt-3">
           <% if @artifact.bookings.count > 0 %>
         <div class="border-bottom">
             <h5>Booking history</h5>
             <ul>
               <% @artifact.bookings.each do |booking| %>
-              <li><strong><%= booking.user.user_name %></strong> ( <%= Date.today.day - @artifact.created_at.day %> days ago)</li>
+              <% if booking.created_at.day == Date.today.day %>
+                <li><strong><%= booking.user.user_name %></strong> (today)</li>
+              <% elsif Date.today.day - booking.created_at.day == 1 %>
+                <li><strong><%= booking.user.user_name %></strong> (day ago)</li>
+              <% else %>
+                <li><strong><%= booking.user.user_name %></strong> ( <%= Date.today.day - booking.created_at.day %> days ago)</li>
+                <% end %>
               <% end %>
             </ul>
         </div>
