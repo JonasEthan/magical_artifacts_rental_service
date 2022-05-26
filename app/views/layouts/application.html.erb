@@ -10,59 +10,19 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="">
-        <img src="https://media2.giphy.com/media/fDNbNCGNzYlwY/giphy.gif" />
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
-          <% if !user_signed_in? %>
-            <li class="nav-item">
-              <a class="nav-link btn btn-navbar-ghost" href="/users/sign_up">Sign up</a>
-            </li>
-            <li class="nav-item">
-            <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
-            </li>
-          <% end %>
-            <li class="nav-item active">
-              <%= link_to "Home", root_path, class: "nav-link" %>
-            </li>
-            <% if user_signed_in? %>
-              <li class="nav-item dropdown">
-                <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/jonasethan" />
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Update profile</a>
-                  <%= link_to "Sign out", destroy_user_session_path, data: {turbo_method: :delete }, class: "dropdown-item" %>
-            <% end %>
-              </div>
-            </li>
-        </ul>
-      </div>
+  <div class="page-container">
+    <div class="navbar-container">
+      <%= render "layouts/shared/navbar" %>
+    </div>
+    <div class="content-container">
+      <body>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </body>
+    </div>
+    <div class="footer-container">
+      <%= render "layouts/shared/footer" %>
     </div>
   </div>
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-  </body>
-  <% if request.base_url + "/" != request.original_url %>
-    <div class="footer">
-      <div class="footer-links">
-        <a href="#"><i class="fab fa-github"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a>
-      </div>
-      <div class="footer-copyright">
-        Go to MARS with <i class="fas fa-rocket"></i>
-      </div>
-    </div>
-  <% end %>
-</div>
 </html>
