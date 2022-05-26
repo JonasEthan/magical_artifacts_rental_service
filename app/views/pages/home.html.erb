@@ -1,51 +1,78 @@
-<div class="banner">
-  <div class="container text-center">
-    <div class="mb-5">
+<div class="home">
+  <div class="banner">
+    <div class="mb-3">
       <h1>Welcome to <strong>MARS</strong>!</h1>
       <p>Join our community and find the most magical artifacts you have never imagined!</p>
     </div>
-    <div>
-      <h3>Already have in mind what you are looking for?</h3>
-      <p>Then type it in!</p>
-      <%= form_tag artifacts_path, method: :get, class: "d-flex my-5 search-home" do %>
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Look for Artifacts"
-          %>
-          <%= submit_tag "Search", class: "btn btn-flat" %>
-        <% end %>
+    <%# <h3>Already have in mind what you are looking for?</h3>
+    <p>Then type it in!</p> %>
+    <div class="search-form">
+      <%= form_tag artifacts_path, method: :get, class: "d-flex my-5 search-home text-center" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Discover our artifacts..."
+        %>
+        <%= submit_tag "Search", class: "btn btn-flat" %>
+      <% end %>
     </div>
+    <h4 class="h4-special pt-5">You don't know yet what you're looking for?</h4>
+
+    <%# <i class="fa-solid fa-circle-down pt-4"></i> %>
+    <p class="text-black pt-1">Discover trending items of our selection...</p>
+  </div>
+
+  <div class="container">
     <div class="home-preview">
-      <div class="row mt-25 text-black">
-        <h3>Don't know what to look for? Here are some items of our selection</h3>
-        <br>
+      <div class="row text-black">
           <% 4.times do %>
             <% @artifact = Artifact.all.sample %>
             <div class="col-sm-12 col-md-6 col-lg-3">
               <%= link_to artifact_path(@artifact) do %>
                 <div class="card mb-3">
-                  <% if @artifact.photos.attached? %>
-                    <% @artifact.photos.each do |photo| %>
-                      <div class="card-img-top" style="background-image: url('<%= cl_image_path photo.key %>')"></div>
-                      <% break %>
-                    <% end %>
-                  <% else %>
-                    <div class="card-img-top fallback"></div>
-                  <% end %>
-                  <div class="card-body">
-                    <h5 class="card-title"><%= @artifact.name %></h5>
-                    <p class="card-text"><%= @artifact.small_description %></p>
-                    <p class="card-text"><%= @artifact.category %></p>
-                    <p class="card-text">Owned by <strong><%= @artifact.user.user_name %></strong></p>
-                    <p class="card-text"><strong><%= @artifact.price %></strong> <i class="fa-solid fa-coins gold-coin"></i> / day</p>
+                  <div class="card-img-top">
+                <% if @artifact.photos.attached? %>
+                  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <% @artifact.photos.each do |photo| %>
+                        <% if photo == @artifact.photos.first %>
+                          <div class="carousel-item active">
+                            <%= cl_image_tag photo.key, alt: "artifact photo", class: "card-img-top" %>
+                          </div>
+                        <% else %>
+                          <div class="carousel-item">
+                            <%= cl_image_tag photo.key, alt: "artifact photo", class: "card-img-top" %>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
                   </div>
-                </div>
-              <% end %>
+                <% else %>
+                  <div class="card-img-top fallback"></div>
+                <% end %>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><%= @artifact.name %></h5>
+                <p class="card-text"><%= @artifact.small_description %></p>
+                <p class="card-text"><%= @artifact.category %></p>
+                <p class="card-text">Owned by <strong><%= @artifact.user.user_name %></strong></p>
+                <p class="card-text"><strong><%= @artifact.price %></strong> <i class="fa-solid fa-coins gold-coin"></i> / day</p>
+              </div>
             </div>
           <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
-    <%= link_to "See our full offer", artifacts_path, class: "btn btn-flat" %>
+    <div class="text-center mt-3 mb-5">
+      <%= link_to "Discover our full offer", artifacts_path, class: "btn btn-gradient" %>
+    </div>
   </div>
 </div>
