@@ -37,7 +37,7 @@
                     <h5 class="card-title"><%= @artifact.name %></h5>
                     <p class="card-text"><%= @artifact.small_description %></p>
                     <p class="card-text"><%= @artifact.category %></p>
-                    <%# <p class="card-text">Owned by <%= @artifact.username </p>%>
+                    <p class="card-text">Owned by <strong><%= @artifact.user.user_name %></strong></p>
                     <p class="card-text"><strong><%= @artifact.price %></strong> <i class="fa-solid fa-coins gold-coin"></i> / day</p>
                   </div>
                 </div>

@@ -14,29 +14,51 @@
   <div class="container">
     <div class="row mt-25">
       <% @artifacts.each do |artifact| %>
-      <div class="col-sm-12 col-md-6 col-lg-3">
-        <%= link_to artifact_path(artifact) do %>
+        <div class="col-sm-12 col-md-6 col-lg-3">
+          <%= link_to artifact_path(artifact) do %>
           <div class="card mb-3">
-            <% if artifact.photos.attached? %>
-              <% artifact.photos.each do |photo| %>
-                <div class="card-img-top" style="background-image: url('<%= cl_image_path photo.key %>')"></div>
-                <% break %>
+            <div class="card-img-top">
+              <% if artifact.photos.attached? %>
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <% artifact.photos.each do |photo| %>
+                      <% if photo == artifact.photos.first %>
+                        <div class="carousel-item active">
+                          <%= cl_image_tag photo.key, alt: "artifact photo", class: "card-img-top" %>
+                        </div>
+                      <% else %>
+                        <div class="carousel-item">
+                          <%= cl_image_tag photo.key, alt: "artifact photo", class: "card-img-top" %>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                </div>
+              <% else %>
+                <div class="card-img-top fallback"></div>
               <% end %>
-            <% else %>
-              <div class="card-img-top fallback"></div>
-            <% end %>
-            <div class="card-body">
-              <h5 class="card-title"><%= artifact.name %></h5>
-              <p class="card-text"><%= artifact.small_description %></p>
-              <p class="card-text"><%= artifact.category %></p>
-              <%# <p class="card-text">Owned by <%= artifact.username </p>%>
-              <p class="card-text"><strong><%= artifact.price %></strong> <i class="fa-solid fa-coins gold-coin"></i> / day</p>
             </div>
-          </div>
-        <% end %>
-      </div>
+              <div class="card-body">
+                <h5 class="card-title"><%= artifact.name %></h5>
+                <p class="card-text"><%= artifact.small_description %></p>
+                <p class="card-text"><%= artifact.category %></p>
+                <p class="card-text">Owned by <strong><%= artifact.user.user_name %></strong></p>
+                <p class="card-text"><strong><%= artifact.price %></strong> <i class="fa-solid fa-coins gold-coin"></i> / day</p>
+              </div>
+            </div>
+          <% end %>
+        </div>
       <% end %>
     </div>
+  </div>
 
     <div class="text-center">
       <%= link_to "Go back", root_path, class: "btn btn-ghost" %>
