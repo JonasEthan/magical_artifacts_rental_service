@@ -5,7 +5,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <% if request.path == artifacts_path || request.path == artifact_path %>
+    <% if request.path == artifacts_path || request.path == artifact_path(@artifact) %>
       <%= form_tag artifacts_path, method: :get, class: "d-flex" do %>
         <%= text_field_tag :query,
           params[:query],
