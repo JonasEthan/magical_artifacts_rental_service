@@ -1,6 +1,10 @@
 class ArtifactsController < ApplicationController
   def index
-    @artifacts = policy_scope(Artifact)
+    if params[:query].present?
+      @artifacts = policy_scope(Artifact.search_by_name_or_category(params[:query]))
+    else
+      @artifacts = policy_scope(Artifact)
+    end
   end
 
   def show
