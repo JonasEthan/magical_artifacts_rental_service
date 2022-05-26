@@ -1,3 +1,8 @@
 // Import page-specific CSS files here.
 @import "home";
 @import "show";
+
+.fallback {
+  background-image: asset-url("fallback_image.jpg");
+  background-size: cover;
+}
