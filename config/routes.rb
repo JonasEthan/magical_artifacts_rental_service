@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :artifacts do
     resources :bookings, only: [:create]
   end
+
+  resources :dashboards, only: [:index]
 end
