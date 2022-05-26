@@ -10,7 +10,7 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-/*
+
 .opacities {
   position: fixed;
   width: 100%;
@@ -25,11 +25,11 @@
   opacity: 1;
   transform: translateY(0) !important;
 }
-*/
-.opacities {
+
+/*.opacities {
   position: fixed;
   width: 100%;
-  transform: translateY(-25px);
+  transform: translateY(-50px);
   opacity: 0;
   transition: 1s;
 }
@@ -38,3 +38,4 @@
   opacity: 1;
   transform: translateY(0);
 }
+*/

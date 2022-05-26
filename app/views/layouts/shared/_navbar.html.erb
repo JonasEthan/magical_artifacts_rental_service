@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top <%= "opacities" if request.path != root_path %>">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top <%= "opacities" if request.path != root_path %>" <%= "data-controller=navbar" if request.path != root_path %> data-action="scroll@window->navbar#updateNavbar">
   <div class="container-fluid">
 
     <%= link_to image_tag("logo.gif") + " Magical Artifact Rental Service", root_path, class: "navbar-brand" %>
