@@ -1,8 +1,7 @@
 .banner {
-  background-size: cover;
-  background-position: center;
   padding: 200px 0;
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url("banner_homepage.jpg");
+  background-size: cover;
 }
 
 .banner h1, .banner h3 {
@@ -22,4 +21,8 @@
 
 .banner .card .card-text{
   color: black !important;
+}
+
+.notice {
+  margin-bottom: 0 !important;
 }
