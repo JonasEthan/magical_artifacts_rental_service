@@ -1,44 +1,46 @@
 <%# <%= render 'artifact_list', artifacts: @artifacts %>
 
-<div class="container flex">
-  <h1>Discover all artifacts (<%= @artifacts.count %>)</h1>
+<div class="index-background pb-3">
+  <div class="container flex">
+    <h1>Discover all artifacts (<%= @artifacts.count %>)</h1>
 
-  <% if user_signed_in? %>
-  <%= link_to "Add your artifact", new_artifact_path, class: "btn btn-flat" %>
-  <br>
-  <br>
-  <% end %>
-</div>
-
-<div class="container">
-  <div class="row mt-25">
-    <% @artifacts.each do |artifact| %>
-    <div class="col-sm-12 col-md-6 col-lg-3">
-      <%= link_to artifact_path(artifact) do %>
-        <div class="card mb-3">
-          <% if artifact.photos.attached? %>
-            <% artifact.photos.each do |photo| %>
-              <div class="card-img-top" style="background-image: url('<%= cl_image_path photo.key %>')"></div>
-              <% break %>
-            <% end %>
-          <% else %>
-            <div class="card-img-top fallback"></div>
-          <% end %>
-          <div class="card-body">
-            <h5 class="card-title"><%= artifact.name %></h5>
-            <p class="card-text"><%= artifact.small_description %></p>
-            <p class="card-text"><%= artifact.category %></p>
-            <%# <p class="card-text">Owned by <%= artifact.username </p>%>
-            <p class="card-text"><strong><%= artifact.price %></strong> <i class="fa-solid fa-coins gold-coin"></i> / day</p>
-          </div>
-        </div>
-      <% end %>
-    </div>
+    <% if user_signed_in? %>
+    <%= link_to "Add your artifact", new_artifact_path, class: "btn btn-flat" %>
+    <br>
+    <br>
     <% end %>
   </div>
 
-  <div class="text-center">
-    <%= link_to "Go back", root_path, class: "btn btn-ghost" %>
+  <div class="container">
+    <div class="row mt-25">
+      <% @artifacts.each do |artifact| %>
+      <div class="col-sm-12 col-md-6 col-lg-3">
+        <%= link_to artifact_path(artifact) do %>
+          <div class="card mb-3">
+            <% if artifact.photos.attached? %>
+              <% artifact.photos.each do |photo| %>
+                <div class="card-img-top" style="background-image: url('<%= cl_image_path photo.key %>')"></div>
+                <% break %>
+              <% end %>
+            <% else %>
+              <div class="card-img-top fallback"></div>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= artifact.name %></h5>
+              <p class="card-text"><%= artifact.small_description %></p>
+              <p class="card-text"><%= artifact.category %></p>
+              <%# <p class="card-text">Owned by <%= artifact.username </p>%>
+              <p class="card-text"><strong><%= artifact.price %></strong> <i class="fa-solid fa-coins gold-coin"></i> / day</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+
+    <div class="text-center">
+      <%= link_to "Go back", root_path, class: "btn btn-ghost" %>
+    </div>
   </div>
 </div>
 
