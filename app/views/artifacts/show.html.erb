@@ -1,23 +1,44 @@
-<div class="container">
-<%= link_to artifacts_path do %>
-  <i class="fa-solid fa-backward"></i> GO BACK
-<% end %>
+<div class="banner-show">
+  <% if @artifact.photos.attached? %>
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <% @artifact.photos.each do |photo| %>
+        <% if photo == @artifact.photos.first %>
+          <div class="carousel-item active">
+            <%= cl_image_tag photo.key, alt: "artifact photo", class: "d-block w-100 carousel-img" %>
+          </div>
+        <% else %>
+          <div class="carousel-item">
+            <%= cl_image_tag photo.key, alt: "artifact photo", class: "d-block w-100 carousel-img" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+  </div>
+    <% else %>
+      <%= image_tag "fallback_image.jpg", alt: "artifact photo", class: "w-100" %>
+    <% end %>
+</div>
+
+<div class="container mt-3">
+  <%= link_to artifacts_path do %>
+    <i class="fa-solid fa-backward"></i> GO BACK
+  <% end %>
   <h1 class="mt-3"><%=  @artifact.name %></h1>
   <h3><%=  @artifact.small_description %></h3>
 
-  <div class="text-center mb-5">
-    <% if @artifact.photos.attached? %>
-      <% @artifact.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, alt: "artifact photo", class: "large-image w-80" %>
-      <% end %>
-    <% else %>
-      <%= image_tag "fallback_image.jpg", alt: "artifact photo", class: "large-image w-80" %>
-    <% end %>
-  </div>
   <div class="row">
     <div class="artifact-info col-sm-7 col-md-7 col-lg-9">
       <div class="border-bottom">
-        <h3><%=  @artifact.description %></h3>
+        <h5><%=  @artifact.description %></h5>
       </div>
       <div class="border-bottom">
         <div class="artifact-info-detail mt-3">
@@ -28,29 +49,33 @@
         </div>
       </div>
       <div class="booking-history mt-5">
+          <% if @artifact.bookings.count > 0 %>
         <div class="border-bottom">
-          <h5>Booking history</h5>
-          <ul>
-            <% @artifact.bookings.each do |booking| %>
-            <li><strong><%= booking.user.user_name %></strong> ( <%= Date.today.day - @artifact.created_at.day %> days ago)</li>
-            <% end %>
-          </ul>
+            <h5>Booking history</h5>
+            <ul>
+              <% @artifact.bookings.each do |booking| %>
+              <li><strong><%= booking.user.user_name %></strong> ( <%= Date.today.day - @artifact.created_at.day %> days ago)</li>
+              <% end %>
+            </ul>
         </div>
-      </div>
-      <div class="artifact-edits mt-3 mb-3">
-        <% if current_user == @artifact.user %>
-          <%= link_to "Edit", edit_artifact_path(@artifact),  class: "btn btn-ghost" %>
-          <%= link_to "Remove", artifact_path(@artifact), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-ghost" %>
-        <% end %>
+          <% end %>
       </div>
     </div>
 
     <div class="booking-form col-sm-5 col-md-5 col-lg-3">
       <p><span class="large-p"><strong><%= @artifact.price %> </strong><i class="fa-solid fa-coins gold-coin"></span></i> / day</p>
+      <div class="artifact-edits mt-3 mb-3">
+        <% if current_user == @artifact.user %>
+          <p>Want to change your artifact?<%= link_to "Edit", edit_artifact_path(@artifact),  class: "btn btn-ghost" %></p>
+          <p>Don't need your artifact anymore?
+          <%= link_to "Delete", artifact_path(@artifact), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-ghost" %></p>
+        <% end %>
+      </div>
       <%= simple_form_for [@artifact, @booking], data: { turbo: false } do |f| %>
+        <% if current_user == @artifact.user %>
+        <% elsif user_signed_in? %>
         <%= f.input :start_date, as: :date, html5: true %>
         <%= f.input :end_date, as: :date, html5: true %>
-        <% if user_signed_in? %>
           <%= f.submit "Reserve", class: 'btn btn-gradient' %>
         <% else %>
           <%= link_to "Sign in to reserve", new_user_session_path, class: "btn btn-gradient" %>
