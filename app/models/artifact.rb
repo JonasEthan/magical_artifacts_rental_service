@@ -13,4 +13,11 @@ class Artifact < ApplicationRecord
   validates :price, presence: true, numericality: true
   validates :category, presence: true, inclusion: { in: CATEGORIES }
   validates :small_description, presence: true, length: { minimum: 5 }
+
+  include PgSearch::Model
+  pg_search_scope :search_by_name_or_category,
+                  against: [ :name, :category ],
+                  using: {
+                    tsearch: { prefix: true } # <-- now `superman batm` will return something!
+                  }
 end

@@ -4,8 +4,20 @@
       <h1>Welcome to <strong>MARS</strong>!</h1>
       <p>Join our community and find the most magical artifacts you have never imagined!</p>
     </div>
+    <div>
+      <h3>Already have in mind what you are looking for?</h3>
+      <p>Then type it in!</p>
+      <%= form_tag artifacts_path, method: :get, class: "d-flex my-5" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Look for Artifacts"
+          %>
+          <%= submit_tag "Search", class: "btn btn-flat" %>
+        <% end %>
+    </div>
     <div class="row mt-25 text-black">
-      <h3>Here are some items of our selection</h3>
+      <h3>Don't know what to look for? Here are some items of our selection</h3>
       <% 4.times do %>
         <% @artifact = Artifact.all.sample %>
         <div class="col-sm-12 col-md-6 col-lg-3">
