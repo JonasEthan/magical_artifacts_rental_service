@@ -1,7 +1,11 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top <%= "opacities" if request.path != root_path %>" <%= "data-controller=navbar" if request.path != root_path %> data-action="scroll@window->navbar#updateNavbar">
   <div class="container-fluid">
 
-    <%= link_to image_tag("logo.gif") + " Magical Artifact Rental Service", root_path, class: "navbar-brand" %>
+    <%# <%= link_to image_tag("logo.gif") + " Magical Artifact Rental Service", root_path, class: "navbar-brand" %>
+    <div class="navbar-brand">
+      <%= link_to image_tag("logo.gif"), root_path %>
+      <span class="navbar-brand" data-controller="typed-js"></span>
+    </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,19 +30,23 @@
           <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>
+        <li class="nav-item active">
+            <%= link_to "All artifacts", artifacts_path, class: "nav-link" %>
+          </li>
+        <% if user_signed_in? %>
+          <li class="nav-item active">
+            <%= link_to "Dashboard", dashboards_path, class: "nav-link" %>
+          </li>
+        <% end %>
           <li class="nav-item active">
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
-        <li class="nav-item active">
-          <%= link_to "Dashboard", dashboards_path, class: "nav-link" %>
-        </li>
-
-          <% if user_signed_in? %>
-            <li class="nav-item dropdown">
-              <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/jonasethan" />
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to "Your profile", dashboards_path, class: "dropdown-item" %>
-                <%= link_to "Sign out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/jonasethan" />
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Your profile", dashboards_path, class: "dropdown-item" %>
+              <%= link_to "Sign out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
           <% end %>
           </li>
       </ul>
