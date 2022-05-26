@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "bootstrap"
+import "./controllers/navbar_visbility"
 // import swal from 'sweetalert';
 
 // swal({
