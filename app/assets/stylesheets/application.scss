@@ -10,3 +10,17 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+.opacities {
+  filter: opacity(0.25);
+  transition: 1s;
+}
+
+.navbar .navbar-brand {
+  filter: opacity(1);
+}
+
+.opacities:hover {
+  filter:opacity(1);
+  transition: 1s;
+}
