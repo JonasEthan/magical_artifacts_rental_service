@@ -18,11 +18,11 @@
         <div class="card mb-3">
           <% if artifact.photos.attached? %>
             <% artifact.photos.each do |photo| %>
-              <%= cl_image_tag photo.key, alt: "artifact photo", class: "large-image w-80" %>
+              <div class="card-img-top" style="background-image: url('<%= cl_image_path photo.key %>')"></div>
               <% break %>
             <% end %>
           <% else %>
-            <%= image_tag "fallback_image.jpg", alt: "artifact photo", class: "large-image w-80" %>
+            <div class="card-img-top fallback"></div>
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= artifact.name %></h5>

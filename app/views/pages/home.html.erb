@@ -25,11 +25,11 @@
             <div class="card mb-3">
               <% if @artifact.photos.attached? %>
                 <% @artifact.photos.each do |photo| %>
-                <%= cl_image_tag photo.key, alt: "artifact photo", class: "large-image w-80" %>
+                <%= cl_image_tag photo.key, alt: "artifact photo", class: "card-img-top" %>
                 <% break %>
                 <% end %>
               <% else %>
-                <%= image_tag "fallback_image.jpg", alt: "artifact photo", class: "large-image w-80" %>
+                <%= image_tag "fallback_image.jpg", alt: "artifact photo", class: "card-img-top" %>
               <% end %>
               <div class="card-body">
                 <h5 class="card-title"><%= @artifact.name %></h5>
