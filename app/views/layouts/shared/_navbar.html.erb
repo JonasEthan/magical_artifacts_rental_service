@@ -1,7 +1,5 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top <%= "opacities" if request.path != root_path %>" <%= "data-controller=navbar" if request.path != root_path %> data-action="scroll@window->navbar#updateNavbar">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top <%= "opacities" if request.path == root_path %>" <%= "data-controller=navbar" if request.path == root_path %> data-action="scroll@window->navbar#updateNavbar">
   <div class="container-fluid">
-
-    <%# <%= link_to image_tag("logo.gif") + " Magical Artifact Rental Service", root_path, class: "navbar-brand" %>
     <div class="navbar-brand">
       <%= link_to image_tag("logo.gif"), root_path %>
       <span class="navbar-brand" data-controller="typed-js"></span>
@@ -10,16 +8,6 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <% if request.path == artifacts_path %>
-      <%= form_tag artifacts_path, method: :get, class: "d-flex" do %>
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control",
-          placeholder: "Look for Artifacts"
-        %>
-        <%= submit_tag "Search", class: "btn btn-flat" %>
-      <% end %>
-    <% end %>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if !user_signed_in? %>
@@ -30,10 +18,17 @@
           <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>
-        <li class="nav-item active">
-            <%= link_to "Discover", artifacts_path, class: "nav-link" %>
-          </li>
-        <% if user_signed_in? %>
+        <% if user_signed_in? && request.path == artifacts_path || request.path == dashboards_path %>
+          <li class="nav-item">
+              <%= link_to "Add an artifact", new_artifact_path, class: "btn btn-navbar-flat" %>
+            </li>
+        <% end %>
+        <% if request.path != artifacts_path %>
+          <li class="nav-item active">
+              <%= link_to "Discover all", artifacts_path, class: "nav-link" %>
+            </li>
+        <% end %>
+        <% if user_signed_in? && request.path != dashboards_path %>
           <li class="nav-item active">
             <%= link_to "Dashboard", dashboards_path, class: "nav-link" %>
           </li>
