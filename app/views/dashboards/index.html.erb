@@ -21,18 +21,18 @@
       <ul>
       <% @user_bookings.each do |booking| %>
       <%# <% raise %>
-      <li>
-        <%= link_to artifact_path(booking.artifact.id) do %>
-          <strong><%= booking.artifact.name %></strong> (from <%= Date::MONTHNAMES[booking.start_date.month] %>
-          <%= booking.start_date.day %>th
-          <% booking.start_date.year if !booking.start_date.year == booking.end_date.year %>
-          to <%= Date::MONTHNAMES[booking.end_date.month] %> <%= booking.end_date.day %>th <%= booking.end_date.year %>)
-          <br>
-          <% days = (booking.end_date - booking.start_date).to_i %>
-          <p>
-            Total Cost in Gold Coins: <%= days * booking.artifact.price %>
-          </p>
-        <% end %>
+        <li>
+          <%= link_to artifact_path(booking.artifact.id) do %>
+            <strong><%= booking.artifact.name %></strong> (from <%= Date::MONTHNAMES[booking.start_date.month] %>
+            <%= booking.start_date.day %>th
+            <% booking.start_date.year if !booking.start_date.year == booking.end_date.year %>
+            to <%= Date::MONTHNAMES[booking.end_date.month] %> <%= booking.end_date.day %>th <%= booking.end_date.year %>)
+            <br>
+            <% days = (booking.end_date - booking.start_date).to_i %>
+            <p>
+              Total Cost in Gold Coins: <%= days * booking.artifact.price %>
+            </p>
+          <% end %>
         </li>
       <% end %>
       </ul>
@@ -40,20 +40,18 @@
 
   <div class="card user-artifacts mb-3 p-3 col-sm-12 col-lg-6">
     <h4>My artifacts</h3>
-    <%= @user_artifacts.each do |artifact| %>
+    <% @artifacts.each do |artifact| %>
       <%= link_to artifact_path(artifact) do %>
-        <div class="card-product">
-          <%#  <div class="card-img-dashboard">
-              <% if artifact.photos.attached? %>
-            <%#      <% artifact.photos.each do |photo| %>
-                <%#    <%= cl_image_path photo.key %>
-              <%#     <% break %>
-              <%#   <% end %>
-              <%# <% else %>
-                <%# <div class="card-img-top fallback"></div>
+        <div class="card-product mb-3">
+          <div class="card-img-dashboard">
+            <% if artifact.photos.attached? %>
+             <% artifact.photos.each do |photo| %>
+                <%= cl_image_tag photo.key, alt: "artifact photo", class: "card-img-top" %>
               <% end %>
-            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-            <%# </div> %>
+            <% else %>
+              <div class="card-img-top fallback"></div>
+            <% end %>
+          </div>
             <div class="card-product-infos">
               <h5><strong><%= artifact.name %>:</strong> <%= artifact.small_description %></h5>
               <p><%= artifact.category %></p>
