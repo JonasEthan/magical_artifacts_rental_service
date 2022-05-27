@@ -4,8 +4,14 @@
     <%= f.input :name%>
     <%= f.input :small_description %>
     <%= f.input :description %>
+    <%= f.input :category, collection: Artifact::CATEGORIES%>
     <%= f.input :price, label: "Price in Gold Coins"%>
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.submit "Update", class: "btn btn-flat" %>
   <% end %>
+
+  <div class="text-center">
+    <%= link_to "Go back", artifact_path(@artifact), class: "btn btn-ghost" %>
+  </div>
+
 </div>
