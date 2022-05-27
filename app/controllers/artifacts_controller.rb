@@ -49,7 +49,7 @@ class ArtifactsController < ApplicationController
   def destroy
     @artifact = Artifact.find(params[:id])
     authorize @artifact
-    @artifact.delete
+    @artifact.destroy
     redirect_to artifacts_path, status: :see_other
   end
 
