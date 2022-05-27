@@ -4,8 +4,7 @@ class Artifact < ApplicationRecord
   has_many_attached :photos
 
   CATEGORIES = [
-    "Household", "Selfdefence(non-lethal)", "Selfdefence(lethal)", "Garden", "Construction", "Adventuring", "Cursed",
-    "Learning", "Comunication", "Traps", "Transportation", "Alchemie", "Music", "Other"
+    "Alchemy", "Black Magic", "Fortune-telling", "Superpower", "Weapon", "Other"
   ]
 
   validates :name, presence: true, uniqueness: true
