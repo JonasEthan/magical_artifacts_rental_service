@@ -1,6 +1,6 @@
 <div class="index-background pb-3 pt-3">
   <div class="container flex mb-4">
-    <h1>Discover all artifacts (<%= @artifacts.count %>)</h1>
+    <h1 id="index-title">Discover all artifacts (<%= @artifacts.count %>)</h1>
       <div class="search-form col-sm-6 col-md-6 col-lg-4">
         <% if request.path == artifacts_path %>
           <%= form_tag artifacts_path, method: :get, class: "d-flex" do %>
@@ -53,7 +53,7 @@
               <div class="card-body">
                 <h5 class="card-title"><%= artifact.name %></h5>
                 <p class="card-text"><%= artifact.small_description %></p>
-                <p class="card-text"><%= artifact.category %></p>
+                <p class="card-text card-category"><%= artifact.category %></p>
                 <p class="card-text">Owned by <strong><%= artifact.user.user_name %></strong></p>
                 <p class="card-text"><strong><%= artifact.price %></strong> <i class="fa-solid fa-coins gold-coin"></i> / day</p>
               </div>
