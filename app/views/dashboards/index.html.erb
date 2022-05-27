@@ -20,7 +20,6 @@
       <h4>My bookings</h4>
       <ul>
       <% @user_bookings.each do |booking| %>
-      <%# <% raise %>
         <li>
           <%= link_to artifact_path(booking.artifact.id) do %>
             <strong><%= booking.artifact.name %></strong> (from <%= Date::MONTHNAMES[booking.start_date.month] %>
@@ -43,19 +42,19 @@
     <% @artifacts.each do |artifact| %>
       <%= link_to artifact_path(artifact) do %>
         <div class="card-product mb-3">
-          <div class="card-img-dashboard">
+          <div class="card-product img">
             <% if artifact.photos.attached? %>
-             <% artifact.photos.each do |photo| %>
-                <%= cl_image_tag photo.key, alt: "artifact photo", class: "card-img-top" %>
+              <% artifact.photos.each do |photo| %>
+                <%= cl_image_tag photo.key, alt: "artifact photo" %>
               <% end %>
             <% else %>
-              <div class="card-img-top fallback"></div>
+              <%= image_tag "fallback_image.jpg", alt: "artifact photo" %>
             <% end %>
           </div>
             <div class="card-product-infos">
               <h5><strong><%= artifact.name %>:</strong> <%= artifact.small_description %></h5>
               <p><%= artifact.category %></p>
-              <p><strong><%= artifact.price %></strong> <i class="fa-solid fa-coins gold-coin"></i> / day</p>
+              <p>Price: <strong><%= artifact.price %></strong> <i class="fa-solid fa-coins gold-coin"></i> / day</p>
               <p>Created on <%= Date::MONTHNAMES[artifact.created_at.month] %> <%= artifact.created_at.day %>th <%= artifact.created_at.year %></p>
             </div>
         </div>
