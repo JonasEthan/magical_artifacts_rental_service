@@ -1,12 +1,18 @@
-<div class="index-background pb-3">
-  <div class="container flex">
+<div class="index-background pb-3 pt-3">
+  <div class="container flex mb-4">
     <h1>Discover all artifacts (<%= @artifacts.count %>)</h1>
-
-    <% if user_signed_in? %>
-    <%= link_to "Add your artifact", new_artifact_path, class: "btn btn-flat" %>
-    <br>
-    <br>
-    <% end %>
+      <div class="search-form col-sm-6 col-md-6 col-lg-4">
+        <% if request.path == artifacts_path %>
+          <%= form_tag artifacts_path, method: :get, class: "d-flex" do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Look for an artifact..."
+            %>
+            <%= submit_tag "Search", class: "btn btn-flat" %>
+          <% end %>
+        <% end %>
+    </div>
   </div>
 
   <div class="container">

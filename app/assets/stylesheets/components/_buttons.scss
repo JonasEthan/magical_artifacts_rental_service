@@ -33,22 +33,31 @@
 
 .btn-flat {
   color: white;
-  padding: 8px 24px;
+  padding: 8px 20px;
   border-radius: 4px;
   background:  rgba(255, 123, 0, 1);
   transition: background 0.3s ease;
   text-decoration: none;
 }
 
-.btn-flat:hover {
-  background: rgba(255, 123, 0, 0.77);
+.btn-navbar-flat {
+  color: white;
+  padding: 8px 8px;
+  border-radius: 4px;
+  background:  rgba(255, 123, 0, 1);
+  transition: background 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-flat:hover, .btn-navbar-flat:hover {
+  background: rgba(255, 123, 0, 1);
   color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
 .btn-gradient {
   color: white;
-  padding: 8px 24px;
+  padding: 8px 20px;
   border-radius: 4px;
   background: linear-gradient(rgba(255, 123, 0, 1), rgba(255, 123, 0, 0.77));
   transition: background 0.3s ease;
@@ -56,7 +65,7 @@
 }
 
 .btn-gradient:hover {
-  background: linear-gradient(rgba(255, 123, 0, 0.77), #c25e07);
+  background: linear-gradient(rgba(255, 123, 0, 1), #c25e07);
   color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
