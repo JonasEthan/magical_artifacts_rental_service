@@ -27,17 +27,17 @@
       <div class="row text-black">
           <% 4.times do %>
             <% @artifact = Artifact.all.sample %>
-            <div class="col-sm-12 col-md-6 col-lg-3">
+            <div class="col-sm-12 col-md-6 col-lg-3 card-image">
               <%= link_to artifact_path(@artifact) do %>
-                <div class="card mb-3 h-100">
-                  <div class="card-img-top">
+                <div class="card mb-3 h-100 card-image">
+                  <div class="card-img-top card-image">
                 <% if @artifact.photos.attached? %>
-                  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
+                  <div id="carouselExampleControls" class="carousel slide card-image" data-bs-ride="carousel">
+                    <div class="carousel-inner card-image">
                       <% @artifact.photos.each do |photo| %>
                         <% if photo == @artifact.photos.first %>
-                          <div class="carousel-item active">
-                            <%= cl_image_tag photo.key, alt: "artifact photo", class: "card-img-top" %>
+                          <div class="carousel-item active card-image">
+                            <%= cl_image_tag photo.key, alt: "artifact photo", class: "card-img-top card-image" %>
                           </div>
                         <% else %>
                           <div class="carousel-item">
@@ -62,9 +62,9 @@
               <div class="card-body">
                 <h5 class="card-title"><%= @artifact.name %></h5>
                 <p class="card-text"><%= @artifact.small_description %></p>
-                <p class="card-text"><%= @artifact.category %></p>
                 <p class="card-text">Owned by <strong><%= @artifact.user.user_name %></strong></p>
                 <p class="card-text"><strong><%= @artifact.price %></strong> <i class="fa-solid fa-coins gold-coin"></i> / day</p>
+                <p class="card-text card-category db"><%= @artifact.category %></p>
               </div>
             </div>
           <% end %>

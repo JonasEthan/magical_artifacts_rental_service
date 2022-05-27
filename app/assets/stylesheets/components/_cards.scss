@@ -13,8 +13,13 @@
   border-top-left-radius: 20px !important;
   border-top-right-radius: 20px !important;
   height: 35vh;
-  background-size: cover;
-  background-position: center;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.card-image {
+  background-size: cover !important;
+  background-position: center !important;
 }
 
 a {
@@ -58,4 +63,12 @@ a:hover {
 
 .card-product .card-product-infos {
   padding: 16px;
+}
+
+.card-category {
+  padding: 6px 10px;
+  width: fit-content;
+  background-color: #4a3867ce;
+  color: white;
+  border-radius: 5px;
 }
