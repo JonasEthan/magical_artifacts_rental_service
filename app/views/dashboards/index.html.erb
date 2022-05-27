@@ -8,33 +8,35 @@
   <h1>My dashboard</h1>
 
   <div class="profile">
-  <%= image_tag "https://kitt.lewagon.com/placeholder/users/jonasethan", class: "avatar-large", alt: "avatar-large" %>
-  <%# <img class="avatar-large" alt="avatar-large" src="https://tanzolymp.com/images/default-non-user-no-photo-1.jpg"> %>
+    <%= image_tag "https://kitt.lewagon.com/placeholder/users/jonasethan", class: "avatar-large", alt: "avatar-large" %>
+    <%# <img class="avatar-large" alt="avatar-large" src="https://tanzolymp.com/images/default-non-user-no-photo-1.jpg"> %>
     <h3><%= current_user.user_name %></h3>
-    <p>Member of the MARS community since <br>
-    <strong><%= current_user.created_at.day %>th <%= Date::MONTHNAMES[current_user.created_at.month] %> <%= current_user.created_at.year %></strong></p>
+    <p>Member since <strong><%= current_user.created_at.day %>th <%= Date::MONTHNAMES[current_user.created_at.month] %> <%= current_user.created_at.year %></strong></p>
   </div>
 
   <div class="row">
     <div class="card user-bookings mb-3 p-3 col-sm-12 col-lg-6">
       <h4>My bookings</h4>
-      <ul>
       <% @user_bookings.each do |booking| %>
-        <li>
-          <%= link_to artifact_path(booking.artifact.id) do %>
-            <strong><%= booking.artifact.name %></strong> (from <%= Date::MONTHNAMES[booking.start_date.month] %>
-            <%= booking.start_date.day %>th
-            <% booking.start_date.year if !booking.start_date.year == booking.end_date.year %>
-            to <%= Date::MONTHNAMES[booking.end_date.month] %> <%= booking.end_date.day %>th <%= booking.end_date.year %>)
-            <br>
-            <% days = (booking.end_date - booking.start_date).to_i %>
-            <p>
-              Total Cost in Gold Coins: <%= days * booking.artifact.price %>
-            </p>
-          <% end %>
-        </li>
+        <%= link_to artifact_path(booking.artifact.id) do %>
+          <div class="card-product mb-3">
+            <div class="card-product-infos">
+              <div class="status mb-2">
+                <p><i class="fa-solid fa-circle-check"></i>   Confirmed</p>
+              </div>
+              <p><h5><%= booking.artifact.name %></h5>
+              <% days = (booking.end_date - booking.start_date).to_i %></p>
+              <p>Total cost: <%= days * booking.artifact.price %> <i class="fa-solid fa-coins gold-coin"></i> </p>
+              <p>
+                <%= Date::MONTHNAMES[booking.start_date.month] %>
+                <%= booking.start_date.day %>th
+                <% booking.start_date.year if !booking.start_date.year == booking.end_date.year %>
+                to <%= Date::MONTHNAMES[booking.end_date.month] %> <%= booking.end_date.day %>th <%= booking.end_date.year %>
+              </p>
+            </div>
+          </div>
+        <% end %>
       <% end %>
-      </ul>
     </div>
 
   <div class="card user-artifacts mb-3 p-3 col-sm-12 col-lg-6">
